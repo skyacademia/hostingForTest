@@ -23,7 +23,8 @@
     <script>
         var currentDivIndex = 0;
         var divs = document.getElementsByTagName('div');
-
+        var startY = 0;
+        var endY = 0;
         // overflow hidden
         document.body.style.overflow = 'hidden';
 
@@ -43,18 +44,17 @@
 
         document.addEventListener('touchstart', function(event) {
             var touch = event.touches[0];
-            var startX = touch.clientX;
-
-            document.addEventListener('touchmove', function(event) {
-                var touch = event.touches[0];
-                var endX = touch.clientX;
-                if (endX - startX > 50) {
+            startY = touch.clientY;
+        });
+        document.addEventListener('touchend', function(event) {
+                var touch = event.changedTouches[0];
+                endY = touch.clientY;
+                if (endY - startY > 50) {
                     moveToPreviousDiv();
-                } else if (startX - endX > 50) {
+                } else if (startY - endY > 50) {
                     moveToNextDiv();
                 }
             });
-        });
     </script>
         
     </script>
