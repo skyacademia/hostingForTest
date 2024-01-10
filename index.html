@@ -24,6 +24,9 @@
         var currentDivIndex = 0;
         var divs = document.getElementsByTagName('div');
 
+        // overflow hidden
+        document.body.style.overflow = 'hidden';
+
         function moveToNextDiv() {
             if (currentDivIndex < divs.length - 1) {
                 currentDivIndex++;
@@ -45,7 +48,6 @@
             document.addEventListener('touchmove', function(event) {
                 var touch = event.touches[0];
                 var endX = touch.clientX;
-
                 if (endX - startX > 50) {
                     moveToPreviousDiv();
                 } else if (startX - endX > 50) {
