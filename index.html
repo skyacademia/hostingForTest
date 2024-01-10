@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            height: 200vh;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: red;"></div>
+    <div style="background-color: orange;"></div>
+    <div style="background-color: yellow;"></div>
+    <div style="background-color: green;"></div>
+    <div style="background-color: blue;"></div>
+    <script>
+        var currentDivIndex = 0;
+        var divs = document.getElementsByTagName('div');
+
+        function moveToNextDiv() {
+            if (currentDivIndex < divs.length - 1) {
+                currentDivIndex++;
+                divs[currentDivIndex].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function moveToPreviousDiv() {
+            if (currentDivIndex > 0) {
+                currentDivIndex--;
+                divs[currentDivIndex].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('touchstart', function(event) {
+            var touch = event.touches[0];
+            var startX = touch.clientX;
+
+            document.addEventListener('touchmove', function(event) {
+                var touch = event.touches[0];
+                var endX = touch.clientX;
+
+                if (endX - startX > 50) {
+                    moveToPreviousDiv();
+                } else if (startX - endX > 50) {
+                    moveToNextDiv();
+                }
+            });
+        });
+    </script>
+        
+    </script>
+</body>
+</html>
